@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/home_toptop">
+
+        <ImageView
+            android:id="@+id/home_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_logo_icon" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+
+            <ImageView
+                android:id="@+id/home_search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_search_icon" />
+
+            <ImageView
+                android:id="@+id/home_alarm_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_alarm_icon" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/home_top_tab"
+        android:layout_width="match_parent"
+        android:layout_height="34dp">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_top_tab_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MY" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_top_tab_recruting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모집중" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_top_tab_whole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전체" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_top_tab_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="분야별" />
+    </com.google.android.material.tabs.TabLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지금 알림 신청 중!"
+        android:textSize="35sp"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:id="@+id/move_to_subs_circles"
+        android:src="@drawable/move_button_icon"/>
+<!--    여기에 recycleview 만들기-->
+</LinearLayout>
+
+<!--    여기에 동아리 리사이클 뷰 만들기-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/home_bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="end">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_bottom_tab_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_bottom_tab_home" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_bottom_tab_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_bottom_tab_search" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_bottom_tab_tab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_bottom_tab3" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_bottom_tab_tab4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_bottom_tab4" />
+    </com.google.android.material.tabs.TabLayout>
+</LinearLayout>

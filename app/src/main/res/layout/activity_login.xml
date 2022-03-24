@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/login_bg">
+
+
+    <LinearLayout
+        android:id="@+id/box"
+        android:layout_width="303dp"
+        android:layout_height="203dp"
+        android:background="@drawable/linear_layout_round"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/logo"
+            android:layout_width="126dp"
+            android:layout_height="26.12dp"
+            android:src="@drawable/img_sharkle_logo" />
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="253dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            android:drawableStart="@drawable/ic_round_perm_identity"
+            android:drawablePadding="5dp"
+            android:paddingLeft="7dp"
+            android:textStyle="normal"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="253dp"
+            android:layout_height="34dp"
+            android:drawableStart="@drawable/akar_icons_lock_on"
+            android:drawablePadding="5dp"
+            android:paddingLeft="8dp"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            android:drawableRight="@drawable/typcn_delete_outline"
+            android:textStyle="normal"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/login_button"
+                    android:layout_marginLeft="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_login_button_bg"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/login_button"
+                    android:layout_alignTop="@+id/login_button"
+                    android:layout_alignRight="@+id/login_button"
+                    android:layout_alignBottom="@+id/login_button"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center"
+                    android:text="로그인"
+                    android:textColor="@color/white"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/sign_up_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/img_sign_up_button_bg"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/sign_up_button"
+                    android:layout_alignTop="@+id/sign_up_button"
+                    android:layout_alignRight="@+id/sign_up_button"
+                    android:layout_alignBottom="@+id/sign_up_button"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center"
+                    android:text="회원가입"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
