@@ -34,92 +34,72 @@ public class MainActivity extends AppCompatActivity
             //sp에 저장된 토큰 없으면 바로 로그인 페이지로
             Intent loginIntent = new Intent(this, LoginActivity.class);
             startActivity(loginIntent);
-        }else{
+        }else {
             //토큰 있으면 accessToken 만료 확인
-            Call<String> accessToken = retrofitAPI.verifyToken(sp.getString("accessToken",""));
+            Call<String> accessToken = retrofitAPI.verifyToken(sp.getString("accessToken", ""));
             accessToken.enqueue(new Callback<String>() {
-
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if(response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         //홈 페이지로 바로 보내기
                         Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
                         startActivity(homeIntent);
+                    } else {
+                        Call<String> refreshToken = retrofitAPI.verifyToken(sp.getString("refreshToken", ""));
+                        refreshToken.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                if (response.isSuccessful()) {
+                                    Call<AccessToken> newAccessToken = retrofitAPI.getRefreshToken(sp.getString("refreshToken", ""));
+                                    newAccessToken.enqueue(new Callback<AccessToken>() {
+                                        @Override
+                                        public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+                                            if (response.isSuccessful()) {
+                                                SharedPreferences.Editor editor = sp.edit();
+                                                editor.remove("accessToken");
+                                                editor.putString("accessToken", response.body().getAccessToken());
+                                                editor.commit();
+
+                                                Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
+                                                startActivity(homeIntent);
+                                            } else {
+                                                Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
+                                                startActivity(loginIntent);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<AccessToken> call, Throwable t) {
+                                            //accessToken 갱신 못 했을 때
+                                            Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
+                                            startActivity(loginIntent);
+                                        }
+                                    });
+                                } else {
+                                    Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
+                                    startActivity(loginIntent);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+
+                            }
+                        });
+
                     }
-                    else{
-                        onFailure(call, new Throwable());
-                    }
+
+
                 }
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Call<String> refreshToken = retrofitAPI.verifyToken(sp.getString("refreshToken",""));
-                    refreshToken.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
-                            if(response.isSuccessful()){
-                                Call<AccessToken> newAccessToken = retrofitAPI.getRefreshToken(sp.getString("refreshToken",""));
-                                newAccessToken.enqueue(new Callback<AccessToken>() {
-                                    @Override
-                                    public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                                        if(response.isSuccessful()){
-                                            SharedPreferences.Editor editor = sp.edit();
-                                            editor.remove("accessToken");
-                                            editor.putString("accessToken",response.body().getAccessToken());
-                                            editor.commit();
 
-                                            Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
-                                            startActivity(homeIntent);
-                                        }
-                                    }
-
-
-
-                                    @Override
-                                    public void onFailure(Call<AccessToken> call, Throwable t) {
-                                        //accessToken 갱신 못 했을 때
-                                        Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
-                                        startActivity(loginIntent);
-                                    }
-                                });
-                            }else {
-                                onFailure(call, new Throwable());
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<String> call, Throwable t) {
-                            Call<AccessToken> refreshToken = retrofitAPI.getRefreshToken(sp.getString("refreshToken",""));
-                            refreshToken.enqueue(new Callback<AccessToken>() {
-                                @Override
-                                public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                                    if(response.isSuccessful()){
-                                        SharedPreferences.Editor editor = sp.edit();
-                                        editor.remove("refreshToken");
-                                        editor.putString("refreshToken",response.body().getAccessToken());
-                                        editor.commit();
-                                    }
-                                    else{
-                                        onFailure(call, new Throwable());
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<AccessToken> call, Throwable t) {
-                                    Intent loginIntent = new Intent(getBaseContext(), LoginActivity.class);
-                                    startActivity(loginIntent);
-                                }
-                            });
-                        }
-                    });
                 }
             });
+
+
         }
 
-    }
-
-
-
-
-
+}
 }
